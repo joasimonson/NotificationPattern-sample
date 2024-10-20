@@ -1,0 +1,21 @@
+@HostAddress = http://localhost:5003
+
+### Success
+
+GET {{HostAddress}}/domain-request/{{$localDatetime "yyyy-MM-dd"}}/true
+Accept: application/json
+
+### Warning > Date less than today
+
+GET {{HostAddress}}/domain-request/2000-10-20/true
+Accept: application/json
+
+### Error > Date greater than today
+
+GET {{HostAddress}}/domain-request/3000-10-20/true
+Accept: application/json
+
+### Error > Invalid operation
+
+GET {{HostAddress}}/domain-request/{{$localDatetime "yyyy-MM-dd"}}/false
+Accept: application/json
